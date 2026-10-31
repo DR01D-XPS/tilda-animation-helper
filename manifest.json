@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Tilda Animation Helper",
+  "version": "1.0.0",
+  "description": "Generate beautiful CSS/JS animations for Tilda Zero Block elements",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Tilda Animation Helper"
+  },
+  "background": {
+    "service_worker": "src/background/serviceWorker.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://tilda.cc/*",
+        "https://*.tilda.ws/*",
+        "https://*.tilda.cc/*",
+        "http://localhost/*",
+        "https://*/*"
+      ],
+      "js": ["src/content/contentScript.ts"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://tilda.cc/*",
+    "https://*.tilda.ws/*",
+    "https://*.tilda.cc/*",
+    "http://localhost/*"
+  ]
+}
